@@ -66,7 +66,10 @@ class RecommendedFoodDetail extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(
                       left: Dimensions.width20, right: Dimensions.width20),
-                  child: ExpandableTextWidget(text: ''),
+                  child: ExpandableTextWidget(
+                    text:
+                        "Lorem ipsum dolor sit amet consectetur adipiscing elitLorem ipsum dolor sit amet consectetur adipiscing elitLorem ipsum dolor sit amet consectetur adipiscing elitLorem ipsum dolor sit amet consectetur adipiscing elitLorem ipsum dolor sit amet consectetur adipiscing elitLorem ipsum dolor sit amet consectetur adipiscing elitLorem ipsum dolor sit amet consectetur adipiscing elitLorem ipsum dolor sit amet consectetur adipiscing elitLorem ipsum dolor sit amet consectetur adipiscing elitLorem ipsum dolor sit amet consectetur adipiscing elitLorem ipsum dolor sit amet consectetur adipiscing elitLorem ipsum dolor sit amet consectetur adipiscing elitLorem ipsum dolor sit amet consectetur adipiscing elitLorem ipsum dolor sit amet consectetur adipiscing elit",
+                  ),
                 ),
               ],
             ),
