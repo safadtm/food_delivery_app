@@ -3,6 +3,7 @@ import 'package:food_delivery_app/utils/colors.dart';
 import 'package:food_delivery_app/utils/dimensions.dart';
 import 'package:food_delivery_app/widgets/app_icon.dart';
 import 'package:food_delivery_app/widgets/big_text.dart';
+import 'package:food_delivery_app/widgets/expandable_text_widget.dart';
 import 'package:food_delivery_app/widgets/food_small_detail.dart';
 
 class PopularFoodDetail extends StatelessWidget {
@@ -14,7 +15,7 @@ class PopularFoodDetail extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          //Image
+          // Background Image
 
           Positioned(
             left: 0,
@@ -31,7 +32,7 @@ class PopularFoodDetail extends StatelessWidget {
             ),
           ),
 
-          //topicons
+          //top icon widets
 
           Positioned(
             top: Dimensions.height45,
@@ -46,7 +47,7 @@ class PopularFoodDetail extends StatelessWidget {
             ),
           ),
 
-          //white background
+          //Introduction of food
 
           Positioned(
             left: 0,
@@ -75,6 +76,15 @@ class PopularFoodDetail extends StatelessWidget {
                   FoodSmallDetail(title: 'Biriyani'),
                   SizedBox(height: Dimensions.height20),
                   BigText(text: 'Introduce'),
+                  SizedBox(height: Dimensions.height20),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: ExpandableTextWidget(
+                        text:
+                            'Biryani  is a mixed rice dish originating among the Muslims of the Indian subcontinent. It is made with Indian spices, rice, and usually some type of meat (chicken, beef, goat, lamb, prawn, fish) or in some cases without any meat, and sometimes, in addition, eggs and potatoes.',
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
