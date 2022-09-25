@@ -29,6 +29,11 @@ class Dimensions {
   static double raduis15 = screenHeight / 56.27;
   static double raduis20 = screenHeight / 42.2;
   static double raduis30 = screenHeight / 28.13;
+
 //Icon size
   static double iconSize24 = screenHeight / 35.17;
+
+//List view size
+  static double listviewImgSize = screenWidth / 3.25;
+  static double listviewTextContainerSize = screenWidth / 3.9;
 }

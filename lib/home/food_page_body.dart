@@ -16,8 +16,8 @@ class FoodPageBody extends StatefulWidget {
 class _FoodPageBodyState extends State<FoodPageBody> {
   PageController pageController = PageController(viewportFraction: 0.85);
   var _currentPageValue = 0.0;
-  double _scaleFactor = 0.8;
-  double _height = Dimensions.pageViewContainer;
+  final double _scaleFactor = 0.8;
+  final double _height = Dimensions.pageViewContainer;
 
   @override
   void initState() {
@@ -39,6 +39,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        //slidersection
+
         SizedBox(
           height: Dimensions.pageView,
           child: PageView.builder(
@@ -48,7 +50,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 return _buildPageItem(position);
               }),
         ),
-        new DotsIndicator(
+        //Dots
+        DotsIndicator(
           dotsCount: 5,
           position: _currentPageValue,
           decorator: DotsDecorator(
@@ -60,6 +63,111 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             ),
           ),
         ),
+        //Popular text
+        SizedBox(height: Dimensions.height30),
+        Container(
+          margin: EdgeInsets.only(left: Dimensions.width30),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              BigText(text: 'Popular', color: Colors.black),
+              SizedBox(width: Dimensions.width10),
+              Container(
+                  margin: const EdgeInsets.only(bottom: 3),
+                  child: BigText(text: '.', color: Colors.black26)),
+              SizedBox(width: Dimensions.width10),
+              Container(
+                margin: const EdgeInsets.only(bottom: 2),
+                child: SmallText(text: 'Food pairing '),
+              ),
+            ],
+          ),
+        ),
+
+        //List of food and images
+
+        ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              return Container(
+                margin: EdgeInsets.only(
+                    left: Dimensions.width20,
+                    right: Dimensions.width20,
+                    bottom: Dimensions.height10),
+                child: Row(
+                  children: [
+                    //image section
+                    Container(
+                      width: Dimensions.listviewImgSize,
+                      height: Dimensions.listviewImgSize,
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            BorderRadius.circular(Dimensions.raduis20),
+                        color: Colors.white30,
+                        image: const DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(
+                              "https://c4.wallpaperflare.com/wallpaper/374/404/846/brown-bird-perching-during-daytime-wren-wren-wallpaper-preview.jpg"),
+                        ),
+                      ),
+                    ),
+
+                    //text container
+                    Expanded(
+                      child: Container(
+                        height: Dimensions.listviewTextContainerSize,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(Dimensions.raduis20),
+                            bottomRight: Radius.circular(Dimensions.raduis20),
+                          ),
+                          color: Colors.white,
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              left: Dimensions.width10,
+                              right: Dimensions.width10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              BigText(
+                                  text: 'Sweet Dessert', color: Colors.black),
+                              SizedBox(height: Dimensions.height10),
+                              SmallText(text: 'With chinese characteristics'),
+                              SizedBox(height: Dimensions.height10),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  IconAndTextWidget(
+                                    icon: Icons.circle_sharp,
+                                    text: 'Normal',
+                                    iconColor: AppColors.iconColor1,
+                                  ),
+                                  IconAndTextWidget(
+                                    icon: Icons.location_on,
+                                    text: '1.7km',
+                                    iconColor: AppColors.mainColor,
+                                  ),
+                                  IconAndTextWidget(
+                                    icon: Icons.access_time_rounded,
+                                    text: '32min',
+                                    iconColor: AppColors.iconColor2,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
       ],
     );
   }
