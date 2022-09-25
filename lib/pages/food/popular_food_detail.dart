@@ -75,7 +75,7 @@ class PopularFoodDetail extends StatelessWidget {
                 children: [
                   FoodSmallDetail(title: 'Biriyani'),
                   SizedBox(height: Dimensions.height20),
-                  BigText(text: 'Introduce'),
+                  BigText(text: 'Introduce', color: Colors.black),
                   SizedBox(height: Dimensions.height20),
                   Expanded(
                     child: SingleChildScrollView(
