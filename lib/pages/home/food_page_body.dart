@@ -1,11 +1,15 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/data/controller/popular_product_controller.dart';
+import 'package:food_delivery_app/models/products_model.dart';
+import 'package:food_delivery_app/utils/app_constants.dart';
 import 'package:food_delivery_app/utils/colors.dart';
 import 'package:food_delivery_app/utils/dimensions.dart';
 import 'package:food_delivery_app/widgets/big_text.dart';
 import 'package:food_delivery_app/widgets/food_small_detail.dart';
 import 'package:food_delivery_app/widgets/icon_and_text_widget.dart';
 import 'package:food_delivery_app/widgets/small_text.dart';
+import 'package:get/get.dart';
 
 class FoodPageBody extends StatefulWidget {
   const FoodPageBody({super.key});
@@ -42,28 +46,38 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       children: [
         //slidersection
 
-        SizedBox(
-          height: Dimensions.pageView,
-          child: PageView.builder(
-              controller: pageController,
-              itemCount: 5,
-              itemBuilder: (context, position) {
-                return _buildPageItem(position);
-              }),
-        ),
-        //Dots
-        DotsIndicator(
-          dotsCount: 5,
-          position: _currentPageValue,
-          decorator: DotsDecorator(
-            activeColor: AppColors.mainColor,
-            size: const Size.square(9.0),
-            activeSize: const Size(18.0, 9.0),
-            activeShape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5.0),
+        GetBuilder<PopularProductController>(builder: (popularProducts) {
+          return SizedBox(
+            height: Dimensions.pageView,
+            child: PageView.builder(
+                controller: pageController,
+                itemCount: popularProducts.popularProductList.length,
+                itemBuilder: (context, position) {
+                  return _buildPageItem(
+                      position, popularProducts.popularProductList[position]);
+                }),
+          );
+        }),
+
+        //Dots indicator
+
+        GetBuilder<PopularProductController>(builder: (popularProducts) {
+          return DotsIndicator(
+            dotsCount: popularProducts.popularProductList.isEmpty
+                ? 1
+                : popularProducts.popularProductList.length,
+            position: _currentPageValue,
+            decorator: DotsDecorator(
+              activeColor: AppColors.mainColor,
+              size: const Size.square(9.0),
+              activeSize: const Size(18.0, 9.0),
+              activeShape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5.0),
+              ),
             ),
-          ),
-        ),
+          );
+        }),
+
         //Popular text
         SizedBox(height: Dimensions.height30),
         Container(
@@ -173,8 +187,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     );
   }
 
-  Widget _buildPageItem(int index) {
-    Matrix4 matrix = new Matrix4.identity();
+  Widget _buildPageItem(int index, ProductModel popularProduct) {
+    Matrix4 matrix = Matrix4.identity();
 
     if (index == _currentPageValue.floor()) {
       var currScale = 1 - (_currentPageValue - index) * (1 - _scaleFactor);
@@ -216,10 +230,11 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             decoration: BoxDecoration(
               color: Colors.white30,
               borderRadius: BorderRadius.circular(Dimensions.raduis30),
-              image: const DecorationImage(
+              image: DecorationImage(
                 fit: BoxFit.cover,
                 image: NetworkImage(
-                    "https://c4.wallpaperflare.com/wallpaper/374/404/846/brown-bird-perching-during-daytime-wren-wren-wallpaper-preview.jpg"),
+                  AppConstants.BASE_URL + "/uploads/" + popularProduct.img!,
+                ),
               ),
             ),
           ),
