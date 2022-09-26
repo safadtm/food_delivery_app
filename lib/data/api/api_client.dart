@@ -8,6 +8,7 @@ class ApiClient extends GetConnect implements GetxService {
   late Map<String, String> _mainHeaders;
 
   ApiClient({required this.appBaseUrl}) {
+    token = "";
     baseUrl = appBaseUrl;
     timeout = Duration(seconds: 30);
     _mainHeaders = {
