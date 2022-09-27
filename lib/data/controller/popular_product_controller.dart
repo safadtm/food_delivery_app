@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/data/controller/cart_controller.dart';
 import 'package:food_delivery_app/models/products_model.dart';
 import 'package:food_delivery_app/utils/colors.dart';
 import 'package:get/get.dart';
@@ -15,12 +16,14 @@ class PopularProductController extends GetxController {
   List<ProductModel> _popularProductList = [];
 
   List<ProductModel> get popularProductList => _popularProductList = [];
+  late CartController _cart;
 
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
 
   int _quantity = 0;
   int get quantity => _quantity;
+
   int _inCartItems = 0;
   int get inCartItems => _inCartItems + _quantity;
 
@@ -50,7 +53,7 @@ class PopularProductController extends GetxController {
   }
 
   int checkQuantity(int quantity) {
-    if (quantity < 0) {
+    if ((_inCartItems + quantity) < 0) {
       Get.snackbar(
         'Item count',
         "You can't reduce more !",
@@ -58,7 +61,7 @@ class PopularProductController extends GetxController {
         colorText: Colors.white,
       );
       return 0;
-    } else if (quantity > 20) {
+    } else if ((_inCartItems + quantity) > 20) {
       Get.snackbar(
         'Item count',
         "You can't add more !",
@@ -72,7 +75,34 @@ class PopularProductController extends GetxController {
     }
   }
 
-  void initProduct() {
+  void initProduct(ProductModel product, CartController cart) {
     _quantity = 0;
+    _inCartItems = 0;
+    _cart = cart;
+    var exist = false;
+    exist = _cart.existInCart(product);
+    //if exist
+
+    //get from storage _inCartItems=3
+    if (exist) {
+      _inCartItems = _cart.getQuantity(product);
+    }
+  }
+
+  void addItem(ProductModel product) {
+    // if (quantity > 0) {
+    _cart.addItem(product, _quantity);
+
+    _quantity = 0;
+
+    _inCartItems = _cart.getQuantity(product);
+    /*  } else {
+      Get.snackbar(
+        'Item count',
+        "You should at least add an item in the cart !",
+        backgroundColor: AppColors.mainColor,
+        colorText: Colors.white,
+      );
+    }*/
   }
 }

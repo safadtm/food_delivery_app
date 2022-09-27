@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/data/controller/cart_controller.dart';
 import 'package:food_delivery_app/data/controller/popular_product_controller.dart';
 import 'package:food_delivery_app/utils/app_constants.dart';
 import 'package:get/get.dart';
@@ -28,7 +29,8 @@ class PopularFoodDetail extends StatelessWidget {
     // print("page Id is " + pageId.toString());
     // print("product name is" + product.name.toString());
 
-    Get.find<PopularProductController>().initProduct();
+    Get.find<PopularProductController>()
+        .initProduct(product, Get.find<CartController>());
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -162,7 +164,7 @@ class PopularFoodDetail extends StatelessWidget {
                               Icon(Icons.remove, color: AppColors.signColor)),
                       SizedBox(width: Dimensions.width10 / 2),
                       BigText(
-                          text: popularProduct.quantity.toString(),
+                          text: popularProduct.inCartItems.toString(),
                           color: Colors.black),
                       SizedBox(width: Dimensions.width10 / 2),
                       GestureDetector(
@@ -187,9 +189,14 @@ class PopularFoodDetail extends StatelessWidget {
                     left: Dimensions.width20,
                     right: Dimensions.width20,
                   ),
-                  child: BigText(
-                      text: "\$ ${product.price} | Add to cart",
-                      color: Colors.white),
+                  child: GestureDetector(
+                    onTap: () {
+                      popularProduct.addItem(product);
+                    },
+                    child: BigText(
+                        text: "\$ ${product.price} | Add to cart",
+                        color: Colors.white),
+                  ),
                 ),
               ],
             ),
