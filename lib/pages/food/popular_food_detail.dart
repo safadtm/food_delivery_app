@@ -67,10 +67,11 @@ class PopularFoodDetail extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                    onTap: () {
-                      Get.toNamed(RouteHelper.getInitial());
-                    },
-                    child: AppIcon(icon: Icons.arrow_back_ios)),
+                  onTap: () {
+                    Get.toNamed(RouteHelper.getInitial());
+                  },
+                  child: AppIcon(icon: Icons.arrow_back_ios),
+                ),
                 GetBuilder<PopularProductController>(builder: (controller) {
                   return Stack(
                     children: [
@@ -209,21 +210,21 @@ class PopularFoodDetail extends StatelessWidget {
 
                 //-----
 
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(Dimensions.raduis20),
-                    color: AppColors.mainColor,
-                  ),
-                  padding: EdgeInsets.only(
-                    top: Dimensions.height20,
-                    bottom: Dimensions.height20,
-                    left: Dimensions.width20,
-                    right: Dimensions.width20,
-                  ),
-                  child: GestureDetector(
-                    onTap: () {
-                      popularProduct.addItem(product);
-                    },
+                GestureDetector(
+                  onTap: () {
+                    popularProduct.addItem(product);
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(Dimensions.raduis20),
+                      color: AppColors.mainColor,
+                    ),
+                    padding: EdgeInsets.only(
+                      top: Dimensions.height20,
+                      bottom: Dimensions.height20,
+                      left: Dimensions.width20,
+                      right: Dimensions.width20,
+                    ),
                     child: BigText(
                         text: "\$ ${product.price} | Add to cart",
                         color: Colors.white),
