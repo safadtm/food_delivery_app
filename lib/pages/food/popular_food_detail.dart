@@ -1,4 +1,10 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/data/controller/popular_product_controller.dart';
+import 'package:food_delivery_app/utils/app_constants.dart';
+import 'package:get/get.dart';
+
+import 'package:food_delivery_app/routes/route_helper.dart';
 import 'package:food_delivery_app/utils/colors.dart';
 import 'package:food_delivery_app/utils/dimensions.dart';
 import 'package:food_delivery_app/widgets/app_icon.dart';
@@ -7,10 +13,20 @@ import 'package:food_delivery_app/widgets/expandable_text_widget.dart';
 import 'package:food_delivery_app/widgets/food_small_detail.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  const PopularFoodDetail({super.key});
+  int pageId;
+  PopularFoodDetail({
+    Key? key,
+    required this.pageId,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<PopularProductController>().popularProductList[pageId];
+
+    print("page Id is " + pageId.toString());
+    print("product name is" + product.name.toString());
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -25,9 +41,13 @@ class PopularFoodDetail extends StatelessWidget {
               height: Dimensions.popularFoodImgSize,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(
-                        'https://c0.wallpaperflare.com/preview/706/1005/217/biriyani-chicken-cooked-cuisine.jpg')),
+                  fit: BoxFit.cover,
+                  image: NetworkImage(
+                    AppConstants.BASE_URL +
+                        AppConstants.UPLOAD_URL +
+                        product.img!,
+                  ),
+                ),
               ),
             ),
           ),
@@ -41,7 +61,11 @@ class PopularFoodDetail extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(icon: Icons.arrow_back_ios),
+                GestureDetector(
+                    onTap: () {
+                      Get.toNamed(RouteHelper.getInitial());
+                    },
+                    child: AppIcon(icon: Icons.arrow_back_ios)),
                 AppIcon(icon: Icons.shopping_cart_outlined),
               ],
             ),
@@ -73,15 +97,14 @@ class PopularFoodDetail extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  FoodSmallDetail(title: 'Biriyani'),
+                  FoodSmallDetail(title: product.name!),
                   SizedBox(height: Dimensions.height20),
                   BigText(text: 'Introduce', color: Colors.black),
                   SizedBox(height: Dimensions.height20),
                   Expanded(
                     child: SingleChildScrollView(
                       child: ExpandableTextWidget(
-                        text:
-                            'Biryani  is a mixed rice dish originating among the Muslims of the Indian subcontinent. It is made with Indian spices, rice, and usually some type of meat (chicken, beef, goat, lamb, prawn, fish) or in some cases without any meat, and sometimes, in addition, eggs and potatoes.',
+                        text: product.description!,
                       ),
                     ),
                   ),
@@ -138,7 +161,6 @@ class PopularFoodDetail extends StatelessWidget {
             //-----
 
             Container(
-              child: BigText(text: "\$10 | Add to cart", color: Colors.white),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.raduis20),
                 color: AppColors.mainColor,
@@ -149,6 +171,9 @@ class PopularFoodDetail extends StatelessWidget {
                 left: Dimensions.width20,
                 right: Dimensions.width20,
               ),
+              child: BigText(
+                  text: "\$ ${product.price} | Add to cart",
+                  color: Colors.white),
             ),
           ],
         ),
