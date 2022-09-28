@@ -81,6 +81,7 @@ class PopularProductController extends GetxController {
     } else {
       return quantity;
     }
+    update();
   }
 
   void initProduct(ProductModel product, CartController cart) {
@@ -93,6 +94,7 @@ class PopularProductController extends GetxController {
     if (exist) {
       _inCartItems = _cart.getQuantity(product);
     }
+    update();
   }
 
   void addItem(ProductModel product) {

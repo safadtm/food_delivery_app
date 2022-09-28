@@ -31,5 +31,6 @@ class RecommendedProductController extends GetxController {
     } else {
       // print("could not got recomended product");
     }
+    update();
   }
 }
