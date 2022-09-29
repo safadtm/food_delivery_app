@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery_app/data/controller/cart_controller.dart';
 import 'package:food_delivery_app/data/controller/popular_product_controller.dart';
 import 'package:food_delivery_app/data/controller/recommended_product_controller.dart';
-import 'package:food_delivery_app/pages/home/main_food_page.dart';
 import 'package:food_delivery_app/routes/route_helper.dart';
 import 'package:food_delivery_app/utils/app_constants.dart';
 import 'package:food_delivery_app/utils/colors.dart';
@@ -218,7 +217,7 @@ class CartPage extends StatelessWidget {
       ),
 
       ///////////////////////Bottom Navigation Bar
-      ///
+
       bottomNavigationBar: GetBuilder<CartController>(
         builder: (cartController) {
           return Container(
