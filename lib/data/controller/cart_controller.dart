@@ -9,6 +9,7 @@ import 'package:food_delivery_app/data/repository/cart_repo.dart';
 
 class CartController extends GetxController {
   final CartRepo cartRepo;
+
   CartController({
     required this.cartRepo,
   });
@@ -16,6 +17,9 @@ class CartController extends GetxController {
   Map<int, CartModel> _items = {};
 
   Map<int, CartModel> get items => _items;
+
+  //for local storage and sharedpreferences
+  List<CartModel> storageItems = [];
 
   //additem
 
@@ -70,6 +74,8 @@ class CartController extends GetxController {
         );
       }
     }
+    cartRepo.addToCartList(getItems);
+
     update();
   }
 
@@ -125,5 +131,23 @@ class CartController extends GetxController {
     });
 
     return total;
+  }
+
+  //local storage
+  List<CartModel> getCartData() {
+    setCart = cartRepo.getCartList();
+
+    return storageItems;
+  }
+
+  set setCart(List<CartModel> items) {
+    storageItems = items;
+
+    for (int i = 0; i < storageItems.length; i++) {
+      _items.putIfAbsent(
+        storageItems[i].product!.id!,
+        () => storageItems[i],
+      );
+    }
   }
 }
