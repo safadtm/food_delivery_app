@@ -45,7 +45,27 @@ convert objects to string becuase sharedpreferences only accepts string
     return cartList;
   }
 
+  List<CartModel> getCartHistoryList() {
+    if (sharedPreferences.containsKey(AppConstants.CART_HISTORY_LIST)) {
+      cartHistory = [];
+      cartHistory =
+          sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
+    }
+
+    List<CartModel> cartListHistory = [];
+
+    cartHistory.forEach((element) =>
+        cartListHistory.add(CartModel.fromJson(jsonDecode(element))));
+
+    return cartListHistory;
+  }
+
   void addToCartHistoryList() {
+    if (sharedPreferences.containsKey(AppConstants.CART_HISTORY_LIST)) {
+      cartHistory =
+          sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
+    }
+
     for (int i = 0; i < cart.length; i++) {
       //  print("history list" + cart[i]);
       cartHistory.add(cart[i]);
@@ -53,9 +73,13 @@ convert objects to string becuase sharedpreferences only accepts string
     removeCart();
     sharedPreferences.setStringList(
         AppConstants.CART_HISTORY_LIST, cartHistory);
+
+    //  print("The length of history list is" +
+    //      getCartHistoryList().length.toString());
   }
 
   void removeCart() {
+    cart = [];
     sharedPreferences.remove(AppConstants.CART_LIST);
   }
 }
