@@ -16,6 +16,7 @@ class AccountPage extends StatelessWidget {
         title: BigText(
           text: "Profile",
           size: 24,
+          color: AppColors.mainBlackColor,
         ),
       ),
       body: Container(
@@ -47,8 +48,8 @@ class AccountPage extends StatelessWidget {
                         icon: Icons.person,
                         backgroundColor: AppColors.mainColor,
                         iconColor: Colors.white,
-                        iconSize: Dimensions.height30 + Dimensions.height45,
-                        size: Dimensions.height15 * 10,
+                        iconSize: Dimensions.height45,
+                        size: Dimensions.height15 * 5,
                       ),
                       bigText: BigText(
                         text: "Safad",
@@ -61,8 +62,8 @@ class AccountPage extends StatelessWidget {
                         icon: Icons.phone,
                         backgroundColor: AppColors.yellowColor,
                         iconColor: Colors.white,
-                        iconSize: Dimensions.height30 + Dimensions.height45,
-                        size: Dimensions.height15 * 10,
+                        iconSize: Dimensions.height45,
+                        size: Dimensions.height15 * 5,
                       ),
                       bigText: BigText(
                         text: "4652",
@@ -75,8 +76,8 @@ class AccountPage extends StatelessWidget {
                         icon: Icons.email,
                         backgroundColor: AppColors.yellowColor,
                         iconColor: Colors.white,
-                        iconSize: Dimensions.height30 + Dimensions.height45,
-                        size: Dimensions.height15 * 10,
+                        iconSize: Dimensions.height45,
+                        size: Dimensions.height15 * 5,
                       ),
                       bigText: BigText(
                         text: "info@5556",
@@ -89,8 +90,8 @@ class AccountPage extends StatelessWidget {
                         icon: Icons.location_on,
                         backgroundColor: AppColors.yellowColor,
                         iconColor: Colors.white,
-                        iconSize: Dimensions.height30 + Dimensions.height45,
-                        size: Dimensions.height15 * 10,
+                        iconSize: Dimensions.height45,
+                        size: Dimensions.height15 * 5,
                       ),
                       bigText: BigText(
                         text: "thekkekara (H)",
@@ -103,8 +104,8 @@ class AccountPage extends StatelessWidget {
                         icon: Icons.message_outlined,
                         backgroundColor: Colors.redAccent,
                         iconColor: Colors.white,
-                        iconSize: Dimensions.height30 + Dimensions.height45,
-                        size: Dimensions.height15 * 10,
+                        iconSize: Dimensions.height45,
+                        size: Dimensions.height15 * 5,
                       ),
                       bigText: BigText(
                         text: "Safad",
