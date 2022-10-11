@@ -29,8 +29,8 @@ class MyApp extends StatelessWidget {
           builder: (_) {
             return GetMaterialApp(
               debugShowCheckedModeBanner: false,
-              home: const SignInPage(),
-              // initialRoute: RouteHelper.getSplashScreen(),
+              //home: const SignInPage(),
+              initialRoute: RouteHelper.getSplashScreen(),
               getPages: RouteHelper.routes,
             );
           },
