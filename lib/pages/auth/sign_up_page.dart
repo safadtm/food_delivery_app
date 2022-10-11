@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/base/show_snackbar.dart';
 import 'package:food_delivery_app/utils/colors.dart';
 import 'package:food_delivery_app/utils/dimensions.dart';
 import 'package:food_delivery_app/widgets/app_text_field.dart';
@@ -29,12 +30,24 @@ class SignUpPage extends StatelessWidget {
       String password = passwordController.text.trim();
 
       if (name.isEmpty) {
+        showSnackBar("Type in your name", title: "Name");
       } else if (phone.isEmpty) {
+        showSnackBar("Type in your phone number", title: "Phone number");
       } else if (email.isEmpty) {
+        showSnackBar("Type in your email address", title: "Email address");
       } else if (!GetUtils.isEmail(email)) {
+        showSnackBar(
+          "Type in a valid email address",
+          title: "Valid email address",
+        );
       } else if (password.isEmpty) {
+        showSnackBar("Type in your password", title: "Password");
       } else if (password.length < 8) {
-      } else {}
+        showSnackBar("Password can not be less than eight characters",
+            title: "Password");
+      } else {
+        showSnackBar("All went well", title: "Perfect");
+      }
     }
 
     return Scaffold(
