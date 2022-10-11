@@ -1,25 +1,19 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/pages/auth/sign_up_page.dart';
 import 'package:food_delivery_app/utils/colors.dart';
 import 'package:food_delivery_app/utils/dimensions.dart';
 import 'package:food_delivery_app/widgets/app_text_field.dart';
 import 'package:food_delivery_app/widgets/big_text.dart';
 import 'package:get/get.dart';
 
-class SignUpPage extends StatelessWidget {
-  const SignUpPage({super.key});
+class SignInPage extends StatelessWidget {
+  const SignInPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     var emailController = TextEditingController();
     var passwordController = TextEditingController();
-    var nameController = TextEditingController();
-    var phoneController = TextEditingController();
-    var signUpImages = [
-      "t.png",
-      "f.png",
-      "g.png",
-    ];
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -28,7 +22,7 @@ class SignUpPage extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: Dimensions.screenHeight * 0.05),
-            //top icon
+            //App Logo
             SizedBox(
               height: Dimensions.screenHeight * 0.25,
               child: Center(
@@ -40,7 +34,33 @@ class SignUpPage extends StatelessWidget {
                 ),
               ),
             ),
-            //
+            //welcome
+            Container(
+              width: double.maxFinite,
+              margin: EdgeInsets.only(left: Dimensions.width20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Hello",
+                    style: TextStyle(
+                      fontSize: Dimensions.font20 * 3 + Dimensions.font20 / 2,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: Dimensions.height20),
+                  Text(
+                    "Sign in to your account",
+                    style: TextStyle(
+                      fontSize: Dimensions.font20,
+                      color: Colors.grey[500],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: Dimensions.height20),
+
             //email
             AppTextField(
               textController: emailController,
@@ -54,22 +74,28 @@ class SignUpPage extends StatelessWidget {
               hintText: "Password",
               icon: Icons.password_sharp,
             ),
+            //tagline
             SizedBox(height: Dimensions.height20),
-            //name
-            AppTextField(
-              textController: nameController,
-              hintText: "Name",
-              icon: Icons.person,
+            Row(
+              children: [
+                Expanded(child: Container()),
+                RichText(
+                  text: TextSpan(
+                    text: "Sign into your account",
+                    style: TextStyle(
+                      color: Colors.grey[500],
+                      fontSize: Dimensions.font20,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: Dimensions.width20,
+                ),
+              ],
             ),
-            SizedBox(height: Dimensions.height20),
-            //phone
-            AppTextField(
-              textController: phoneController,
-              hintText: "Phone",
-              icon: Icons.phone,
-            ),
-            SizedBox(height: Dimensions.height20),
-            //signupbutton
+
+            SizedBox(height: Dimensions.screenHeight * 0.05),
+            //signInbutton
             Container(
               width: Dimensions.screenWidth / 2,
               height: Dimensions.screenHeight / 13,
@@ -79,47 +105,37 @@ class SignUpPage extends StatelessWidget {
               ),
               child: Center(
                 child: BigText(
-                  text: "Sign up",
+                  text: "Sign In",
                   size: Dimensions.font20 + Dimensions.font20 / 2,
                   color: Colors.white,
                 ),
               ),
             ),
             //
-            SizedBox(height: Dimensions.height10),
+            SizedBox(height: Dimensions.screenHeight * 0.05),
             //tagline
             RichText(
               text: TextSpan(
-                recognizer: TapGestureRecognizer()..onTap = () => Get.back(),
-                text: "Have an account already?",
+                text: "Don't have an account?",
                 style: TextStyle(
                   color: Colors.grey[500],
                   fontSize: Dimensions.font20,
                 ),
-              ),
-            ),
-            //social media connection
-            SizedBox(height: Dimensions.screenHeight * 0.05),
-            RichText(
-              text: TextSpan(
-                text: "Sign up using one of the following methods",
-                style: TextStyle(
-                  color: Colors.grey[500],
-                  fontSize: Dimensions.font16,
-                ),
-              ),
-            ),
-            Wrap(
-              children: List.generate(
-                3,
-                (index) => Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CircleAvatar(
-                    radius: Dimensions.raduis30,
-                    backgroundImage:
-                        AssetImage("assets/images/${signUpImages[index]}"),
-                  ),
-                ),
+                children: [
+                  TextSpan(
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () => Get.to(
+                            () => const SignUpPage(),
+                            transition: Transition.fade,
+                          ),
+                    text: " Create",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.mainBlackColor,
+                      fontSize: Dimensions.font20,
+                    ),
+                  )
+                ],
               ),
             ),
           ],
