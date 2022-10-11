@@ -21,6 +21,22 @@ class SignUpPage extends StatelessWidget {
       "g.png",
     ];
 
+    ///validation
+    void _registration() {
+      String name = nameController.text.trim();
+      String phone = phoneController.text.trim();
+      String email = emailController.text.trim();
+      String password = passwordController.text.trim();
+
+      if (name.isEmpty) {
+      } else if (phone.isEmpty) {
+      } else if (email.isEmpty) {
+      } else if (!GetUtils.isEmail(email)) {
+      } else if (password.isEmpty) {
+      } else if (password.length < 8) {
+      } else {}
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -70,18 +86,23 @@ class SignUpPage extends StatelessWidget {
             ),
             SizedBox(height: Dimensions.height20),
             //signupbutton
-            Container(
-              width: Dimensions.screenWidth / 2,
-              height: Dimensions.screenHeight / 13,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimensions.raduis30),
-                color: AppColors.mainColor,
-              ),
-              child: Center(
-                child: BigText(
-                  text: "Sign up",
-                  size: Dimensions.font20 + Dimensions.font20 / 2,
-                  color: Colors.white,
+            GestureDetector(
+              onTap: () {
+                _registration();
+              },
+              child: Container(
+                width: Dimensions.screenWidth / 2,
+                height: Dimensions.screenHeight / 13,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(Dimensions.raduis30),
+                  color: AppColors.mainColor,
+                ),
+                child: Center(
+                  child: BigText(
+                    text: "Sign up",
+                    size: Dimensions.font20 + Dimensions.font20 / 2,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),

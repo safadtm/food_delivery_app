@@ -18,9 +18,9 @@ class _HomePageState extends State<HomePage> {
 
   // late PersistentTabController _controller;
 
-  List pages = [
+  List pages = const [
     MainFoodPage(),
-    SignUpWidget(),
+    SignUpPage(),
     CartHistory(),
     AccountPage(),
   ];
