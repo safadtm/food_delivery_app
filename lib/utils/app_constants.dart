@@ -7,6 +7,9 @@ class AppConstants {
   static const String RECOMMENDED_PRODUCT_URI = "/api/v1/products/recommended";
   static const String UPLOAD_URL = "/uploads/";
 
+//auth end points
+  static const String REGISTRATION_URI = "/api/v1/auth/register";
+
   static const String TOKEN = "TMCtoken";
 
   static const String CART_LIST = "cart-list";
