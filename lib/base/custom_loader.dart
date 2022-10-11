@@ -9,7 +9,7 @@ class CustomLoader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("Iam printing loading state " +
+    print("I am printing loading state " +
         Get.find<AuthController>().isLoading.toString());
 
     return Center(
