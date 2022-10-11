@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/base/show_snackbar.dart';
+import 'package:food_delivery_app/models/signup_body.dart';
 import 'package:food_delivery_app/utils/colors.dart';
 import 'package:food_delivery_app/utils/dimensions.dart';
 import 'package:food_delivery_app/widgets/app_text_field.dart';
@@ -47,6 +48,13 @@ class SignUpPage extends StatelessWidget {
             title: "Password");
       } else {
         showSnackBar("All went well", title: "Perfect");
+
+        SignUpBody signUpBody = SignUpBody(
+          name: name,
+          phone: phone,
+          email: email,
+          password: password,
+        );
       }
     }
 
