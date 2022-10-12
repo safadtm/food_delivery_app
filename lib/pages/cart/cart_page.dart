@@ -313,7 +313,7 @@ class CartPage extends StatelessWidget {
                           if (Get.find<AuthController>().userLoggedIn()) {
                             cartController.addToHistory();
                           } else {
-                            Get.toNamed(RouteHelper.getSignIn());
+                            Get.toNamed(RouteHelper.getSignInPage());
                           }
                         },
                         child: Container(

@@ -21,7 +21,7 @@ class RouteHelper {
   static String getRecommendedFood(int pageId, String page) =>
       '$recommendedFood?pageId=$pageId&page=$page';
   static String getCartPage() => 'cartPage';
-  static String getSignIn() => 'signIn';
+  static String getSignInPage() => 'signIn';
 
   static List<GetPage> routes = [
     GetPage(name: splashScreen, page: () => const SplashScreen()),
